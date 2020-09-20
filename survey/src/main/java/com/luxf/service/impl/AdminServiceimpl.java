@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminServiceimpl implements AdminService {
 
+
     @Autowired
     private AdminDao adminDao;
 
