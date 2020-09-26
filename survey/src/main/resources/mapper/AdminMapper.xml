@@ -2,23 +2,65 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.luxf.dao.AdminDao">
-    <insert id="add" parameterType="com.luxf.entity.Admin" keyProperty="id" useGeneratedKeys="true" >
-        insert into tb_admin(
-			account,
-			id,
-			name,
-			password,
-			phone,
-			remark
-		)values(
-			#{account},
-			#{id},
-			#{name},
-			#{password},
-			#{phone},
-			#{remark}
-		)
+
+	<resultMap id="AdminMap" type="com.luxf.entity.Admin">
+		<id column="id" property="id"></id>
+		<result column="account" property="account"></result>
+		<result column="password" property="password"></result>
+		<result column="name" property="name"></result>
+		<result column="phone" property="phone"></result>
+		<result column="remark" property="remark"></result>
+	</resultMap>
+
+	<sql id="AdminFindCirteria">
+		<where>
+			<if test="id != null"> and id = #{id}</if>
+			<if test="account != null"> and account = #{account}</if>
+			<if test="password != null"> and password = #{password}</if>
+			<if test="name != null"> and name = #{name}</if>
+			<if test="phone != null"> and phone = #{phone}</if>
+		</where>
+	</sql>
+	<sql id="AdminUpdateCirteria">
+		<set>
+			<if test="account != null">account = #{account},</if>
+			<if test="password != null">password = #{password},</if>
+			<if test="name != null">name = #{name},</if>
+			<if test="phone != null">phone = #{phone},</if>
+			<if test="remark != null">remark = #{remark},</if>
+		</set>
+	</sql>
+
+
+    <insert id="create" parameterType="com.luxf.entity.Admin" keyProperty="id" useGeneratedKeys="true" >
+        insert into tb_admin(account,id,name,password,phone,remark)values(#{account},#{id},#{name},#{password},#{phone},#{remark})
     </insert>
 
+	<delete id="delete">
+		delete from tb_admin
+		<include refid="AdminFindCirteria"></include>
+	</delete>
+
+	<select id="count" resultType="int">
+		select count(1) from tb_admin
+		<include refid="AdminFindCirteria"></include>
+	</select>
+
+	<select id="query" resultMap="AdminMap">
+		select * from tb_admin
+		<include refid="AdminFindCirteria"></include>
+	</select>
+
+	<select id="detail" resultMap="AdminMap">
+		select * from tb_admin
+		<include refid="AdminFindCirteria"></include>
+		limit 1
+	</select>
+
+	<update id="update">
+		update tb_admin
+		<include refid="AdminUpdateCirteria"></include>
+		<include refid="AdminFindCirteria"></include>
+	</update>
 
 </mapper>

@@ -4,7 +4,12 @@ import com.luxf.entity.Admin;
 import com.luxf.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author : Timber
@@ -13,18 +18,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/admin")
+@ResponseBody
 public class AdminController {
 
-    @Autowired
     private AdminService adminService;
 
-    @RequestMapping("/add")
-    public void add(){
+    @Autowired
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
+    }
+
+    @RequestMapping("/create")
+    public void create(){
         Admin admin = new Admin();
         admin.setAccount("admin");
         admin.setName("系统操作员");
-        admin.setPassword("123456");
-        adminService.add(admin);
+        admin.setPassword("12345678");
+        adminService.create(admin);
+    }
+
+    @RequestMapping("/delete")
+    public void delete(){
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("id", 6);
+        adminService.delete(paramMap);
     }
 
 }
