@@ -40,8 +40,57 @@ public class AdminController {
     @RequestMapping("/delete")
     public void delete(){
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("id", 6);
         adminService.delete(paramMap);
     }
 
+    @RequestMapping("/update")
+    public void update(){
+        Map<String, Object> paramMap = new HashMap<>();
+        adminService.update(paramMap);
+    }
+
+    @RequestMapping("/query")
+    public void query(){
+        Map<String, Object> paramMap = new HashMap<>();
+        adminService.query(paramMap);
+    }
+
+    @RequestMapping("/detail")
+    public void detail(){
+        Map<String, Object> paramMap = new HashMap<>();
+        adminService.detail(paramMap);
+    }
+
+    @RequestMapping("/count")
+    public void count(){
+        Map<String, Object> paramMap = new HashMap<>();
+        adminService.count(paramMap);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

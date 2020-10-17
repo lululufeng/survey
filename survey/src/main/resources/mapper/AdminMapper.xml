@@ -23,11 +23,11 @@
 	</sql>
 	<sql id="AdminUpdateCirteria">
 		<set>
-			<if test="account != null">account = #{account},</if>
-			<if test="password != null">password = #{password},</if>
-			<if test="name != null">name = #{name},</if>
-			<if test="phone != null">phone = #{phone},</if>
-			<if test="remark != null">remark = #{remark},</if>
+			<if test="upAcount != null">account = #{upAcount},</if>
+			<if test="upPassword != null">password = #{upPassword},</if>
+			<if test="upName != null">name = #{upName},</if>
+			<if test="upPhone != null">phone = #{upPhone},</if>
+			<if test="upRremark != null">remark = #{upRremark},</if>
 		</set>
 	</sql>
 

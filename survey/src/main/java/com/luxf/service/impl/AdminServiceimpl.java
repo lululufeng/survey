@@ -34,27 +34,40 @@ public class AdminServiceimpl implements AdminService {
 
     @Override
     public int delete(Map<String, Object> paramMap) {
+        paramMap.put("id", 11);
         int delete = adminDao.delete(paramMap);
         return delete;
     }
 
     @Override
     public int update(Map<String, Object> paramMap) {
-        return 0;
+        paramMap.put("id",12);
+        paramMap.put("upAcount","Timber");
+        paramMap.put("upPassword","lxf123");
+        paramMap.put("upName","luxf");
+        paramMap.put("upPhone","110");
+        paramMap.put("upRremark","dever");
+        int update = adminDao.update(paramMap);
+        return update;
     }
 
     @Override
     public List<Admin> query(Map<String, Object> paramMap) {
-        return null;
+        List<Admin> query = adminDao.query(paramMap);
+        return query;
     }
 
     @Override
     public Admin detail(Map<String, Object> paramMap) {
-        return null;
+        paramMap.put("name","admin");
+        Admin query = adminDao.detail(paramMap);
+        return query;
     }
 
     @Override
     public int count(Map<String, Object> paramMap) {
-        return 0;
+        paramMap.put("account", "admin");
+        int count = adminDao.count(paramMap);
+        return count;
     }
 }
